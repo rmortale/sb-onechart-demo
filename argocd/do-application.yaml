@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sb-onechart-demo
+  name: do-sb-onechart-demo
   namespace: default
 spec:
   project: default
@@ -14,8 +14,8 @@ spec:
       targetRevision: 0.70.0
       helm:
         valueFiles:
-        - $values/ingress-nginx/values.yaml
-    - repoURL: https://github.com/mabusaa/argocd-example-apps.git
+        - $values/values/do-values.yaml
+    - repoURL: https://github.com/rmortale/sb-onechart-demo.git
       ref: values
       targetRevision: main
   syncPolicy:
