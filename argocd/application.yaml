@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sb-onechart-demo
+  namespace: default
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  sources:
+    - chart: onechart
+      repoURL: https://chart.onechart.dev
+      targetRevision: 0.70.0
+      helm:
+        valueFiles:
+        - $values/ingress-nginx/values.yaml
+    - repoURL: https://github.com/mabusaa/argocd-example-apps.git
+      ref: values
+      targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      
