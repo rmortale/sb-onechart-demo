@@ -35,7 +35,7 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn --no-transfer-progress --batch-mode clean package
+        run: mvn --file ./mvn/pom.xml --no-transfer-progress --batch-mode clean package
 
       - name: Log in to the Container registry
         if: github.event_name != 'pull_request'
@@ -48,7 +48,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./mvn
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
