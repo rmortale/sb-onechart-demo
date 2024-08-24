@@ -1,5 +1,5 @@
 image:
-  repository: rmortale/helloworld
-  tag: latest
+  repository: ghcr.io/rmortale/sb-onechart-demo
+  tag: develop
 
 containerPort: 8080
