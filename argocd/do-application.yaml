@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: do-sb-onechart-demo
+  name: do-sb-onechart-demo-devt
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -24,6 +24,8 @@ spec:
       ref: values
       targetRevision: develop
   syncPolicy:
+    automated:
+      prune: true
     syncOptions:
       - CreateNamespace=true
       

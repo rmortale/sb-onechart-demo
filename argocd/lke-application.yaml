@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: do-sb-onechart-demo
+  name: do-sb-onechart-demo-acpt
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   destination:
-    server: https://bb6ff00d-c3ef-4206-ae4b-c07c036775b1.eu-central-1.linodelke.net
+    server: https://bb6ff00d-c3ef-4206-ae4b-c07c036775b1.eu-central-1.linodelke.net:443
     namespace: default
   sources:
     - chart: onechart
@@ -24,6 +24,8 @@ spec:
       ref: values
       targetRevision: main
   syncPolicy:
+    automated:
+      prune: true
     syncOptions:
       - CreateNamespace=true
       
