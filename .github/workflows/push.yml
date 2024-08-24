@@ -2,6 +2,8 @@ name: Build and Push Container to GitHub Container Registry
 
 on:
   push:
+    paths:
+      - 'mvn/**'
 
 env:
   REGISTRY: ghcr.io
