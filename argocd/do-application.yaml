@@ -22,7 +22,7 @@ spec:
         - $values/values/do-values.yaml
     - repoURL: https://github.com/rmortale/sb-onechart-demo.git
       ref: values
-      targetRevision: main
+      targetRevision: develop
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
