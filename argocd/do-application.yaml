@@ -3,6 +3,11 @@ kind: Application
 metadata:
   name: do-sb-onechart-demo
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: do-sb-onechart-demo-app
+    environment: DEVT
 spec:
   project: default
   destination:
