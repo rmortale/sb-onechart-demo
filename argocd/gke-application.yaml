@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: do-sb-onechart-demo-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: do-sb-onechart-demo-app
+    environment: PROD
+spec:
+  project: default
+  destination:
+    server: https://34.116.197.198
+    namespace: default
+  sources:
+    - chart: onechart
+      repoURL: https://chart.onechart.dev
+      targetRevision: 0.70.0
+      helm:
+        valueFiles:
+        - $values/values/gke-values.yaml
+        
+    - repoURL: https://github.com/rmortale/sb-onechart-demo.git
+      ref: values
+      targetRevision: v1.0.0
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      
