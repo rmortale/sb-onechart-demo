@@ -8,7 +8,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  #IMAGE_NAME: sb-onechart-demo
 
 jobs:
   build_and_push:
