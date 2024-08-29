@@ -55,7 +55,7 @@ jobs:
           echo "updating image tag"
           git config --global user.email ci-bot@argocd.com && git config --global user.name ci-bot
           echo "cloning app repo"
-          git clone https://oauth2:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git
+          git clone https://oauth2:${{ secrets.GH_PAT_MYSELF }}@github.com/${{ github.repository }}.git
           cd sb-onechart-demo
           echo "checkout source branch"
           git checkout ${{ github.event.pull_request.head.ref }}
