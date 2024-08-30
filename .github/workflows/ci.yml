@@ -60,13 +60,19 @@ jobs:
           echo "checkout main branch"
           git checkout main
           echo "updating image tag in values file"
+          echo ${{ github.sha }} > values/current-tag-${{ github.run_number }}.txt
+
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values/do-values.yaml
-          echo ${{ github.sha }} > values/current-tag.txt
           git add . && git commit -m "update dev image tag"
+          
           git checkout -b promote/to-acpt
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values/lke-values.yaml
           git add . && git commit -m "update acpt image tag"
           
-          git push --all origin
+          git checkout -b promote/to-prod
+          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values/gke-values.yaml
+          git add . && git commit -m "update prod image tag"
           
+          git push --all origin
+
 
