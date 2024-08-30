@@ -61,6 +61,10 @@ jobs:
           git checkout main
           echo "updating image tag in values file"
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values/do-values.yaml
-          git add . && git commit -m "update image tag"
+          echo ${{ github.sha }} > values/current-tag.txt
+          git add . && git commit -m "update dev image tag"
+          git checkout -b promote/to-acpt
+          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," values/lke-values.yaml
+          git add . && git commit -m "update acpt image tag"
           git push
 
